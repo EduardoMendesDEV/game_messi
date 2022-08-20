@@ -14,10 +14,21 @@ function movimentaMessi() {
     yMessi -= 3;
   }
   if (keyIsDown(DOWN_ARROW)) {
-    if (podeSeMover()) {
+    if (podeSeMover("y")) {
       yMessi += 3;
     }
   }
+  if (podeSeMover("x")){
+    if (keyIsDown(RIGHT_ARROW)){
+      console.log("preciso mover o messi para a direita")
+      xMessi += 3;
+    }
+    if (keyIsDown(LEFT_ARROW)){
+      console.log("preciso mover o messi para a esquerda")
+      xMessi -= 3;
+    }
+  }
+  console.log(`xMessi --> ${xMessi} yMessi --> ${yMessi}`)
 }
 function colidiu() {
   yMessi = 365;
@@ -64,6 +75,15 @@ function volta() {
   }
 }
 
-function podeSeMover() {
-  return yMessi < 365;
+function podeSeMover(direcao) {
+  
+  if(direcao == "y"){
+    return yMessi < 365;
+  }
+  if(direcao == "x"){
+    if(xMessi < 15) xMessi = 16;
+    if(xMessi > 501) xMessi = 500
+    return xMessi > 15 && xMessi < 501;
+  
+  }
 }
